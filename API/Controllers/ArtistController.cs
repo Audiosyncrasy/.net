@@ -5,26 +5,42 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using DataAccess;
 
 namespace API.Controllers
 {
     public class ArtistController : ApiController
     {
-        List<Artist> artists = new List<Artist>();
 
-        public ArtistController()
+        // POST /artist/search
+        [Route("artist/search")]
+        public IHttpActionResult Post([FromUri]string name)
         {
-            artists.Add(new Artist { Name = "Hillsong United", Bio = "This is a bio!", ArtistID = 1 });
-            artists.Add(new Artist { Name = "Corey Asbury", Bio = "This is a bio!", ArtistID = 2 });
-            artists.Add(new Artist { Name = "Israel Houghton", Bio = "This is a bio!", ArtistID = 3 });
-        }
+            System.Data.DataTable data;
+            string errorMsg;
 
+            if (name == null || name == "")
+            {
+                errorMsg = "Please provide a value for the 'name' query parameter.";
+                return Ok(errorMsg);
+            }
+
+            var sql = new SQL();
+
+            sql.Parameters.Add("@name", name);
+            data = sql.ExecuteStoredProcedureDT("GetArtistSearch");
+
+            return Ok(data);
+        }
+        
         // GET /artists
-        [Route("artists")]
+        /*[Route("artists")]
         public List<Artist> Get()
         {
-            return artists;
+            var sql = new SQL();
+
+            sql.Parameters.Add("@name", );
+            var data = sql.ExecuteStoredProcedureDT("GetArtistSearch");
         }
 
         // GET /artist
@@ -33,6 +49,7 @@ namespace API.Controllers
         {
             return artists.Where(a => a.ArtistID == id).FirstOrDefault();
         }
+        */
 
         /*
         // GET api/artist/5

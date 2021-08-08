@@ -95,3 +95,7 @@ C:\git\.net\API\obj\Debug\API.csproj.CoreCompileInputs.cache
 C:\git\.net\API\obj\Debug\API.csproj.CopyComplete
 C:\git\.net\API\obj\Debug\API.dll
 C:\git\.net\API\obj\Debug\API.pdb
+C:\git\.net\API\bin\Assessment.dll
+C:\git\.net\API\bin\MTDataAccess.dll
+C:\git\.net\API\bin\MTDataAccess.pdb
+C:\git\.net\API\bin\Assessment.pdb
