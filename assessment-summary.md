@@ -34,6 +34,8 @@ I added a `using DataAccess` statement to the top of the controllers so I could 
 
 Next, I focused on implementing the `artist/search` route. I chose to implement the methods called by the routes as interfaces (`IHttpActionResult`) so that I could send the correct HTTP response (i.e., 400 Bad Request) when an API consumer sends malformed query parameters. Both the `artist/search` and `song/list` endpoints implement error-checking.
 
+I used Postman to test the endpoints.
+
 For each of these routes, I also created corresponding stored procedures:
 - GetArtistSearch (/artist/search)
 - GetSongList (/song/list)
