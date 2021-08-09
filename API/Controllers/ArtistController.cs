@@ -11,18 +11,17 @@ namespace API.Controllers
 {
     public class ArtistController : ApiController
     {
-
         // POST /artist/search
         [Route("artist/search")]
-        public IHttpActionResult Post([FromUri]string name)
+        public IHttpActionResult ArtistSearch([FromUri]string name)
         {
             System.Data.DataTable data;
             string errorMsg;
 
             if (name == null || name == "")
             {
-                errorMsg = "Please provide a value for the 'name' query parameter.";
-                return Ok(errorMsg);
+                errorMsg = "The name parameter was missing or empty. Please provide a value for the 'name' query parameter.";
+                return BadRequest(errorMsg);
             }
 
             var sql = new SQL();
@@ -33,45 +32,21 @@ namespace API.Controllers
             return Ok(data);
         }
         
-        // GET /artists
-        /*[Route("artists")]
-        public List<Artist> Get()
+        // POST /artist/add
+        [Route("artist/add")]
+        public IHttpActionResult ArtistAdd([FromUri]string name, string biography, string imageURL, string heroURL)
         {
+            System.Data.DataTable data;
             var sql = new SQL();
 
-            sql.Parameters.Add("@name", );
-            var data = sql.ExecuteStoredProcedureDT("GetArtistSearch");
-        }
+            sql.Parameters.Add("@title", name);
+            sql.Parameters.Add("@biography", biography);
+            sql.Parameters.Add("@imageURL", imageURL);
+            sql.Parameters.Add("@heroURL", heroURL);
 
-        // GET /artist
-        [Route("artist/{id}")]
-        public Artist Get(int id)
-        {
-            return artists.Where(a => a.ArtistID == id).FirstOrDefault();
-        }
-        */
+            data = sql.ExecuteStoredProcedureDT("AddArtist");
 
-        /*
-        // GET api/artist/5
-        public string Get(int id)
-        {
-            return "value";
+            return Ok(data);
         }
-
-        // POST api/artist
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/artist/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/artist/5
-        public void Delete(int id)
-        {
-        }
-        */
     }
 }
