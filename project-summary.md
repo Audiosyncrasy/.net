@@ -48,7 +48,7 @@ For each of these routes, I also created corresponding stored procedures:
 - In the artistDetails page, the `@artistID` parameter is hard-coded. Ideally, the parameters should be extracted from the URL (e.g., /PageToSync/artistDetails/{artistID})
 
 ### API Project
-- The API project would be a great opportunity to use TDD. Ideally, unit tests should be implemented first as it's much easier than implementing them later, and they provides immediate feedback when the product code "breaks."
+- The API project would be a great opportunity to use TDD. Ideally, unit tests should be implemented first as it's much easier than implementing them later, and they provide immediate feedback when the product code "breaks."
 - None of the routes I implemented handle a route with no parameters. If a user were to try to POST to one of the routes with no parameters, I would expect it to return a useful error message indicating the request does not contain query parameters but should.
 - I started creating a model class for Artist, but ultimately abandoned the effort for the sake of time - and because the data shapes were already defined in the database. Ideally, each data shape should have a corresponding model.
 - Extract business logic from controller classes into their own classes.
